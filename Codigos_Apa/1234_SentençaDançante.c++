@@ -11,5 +11,6 @@ string entrada;
                 u--;
             }
         }
+        cout << "\n";
     }  
 } 
