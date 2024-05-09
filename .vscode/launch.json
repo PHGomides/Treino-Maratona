@@ -8,7 +8,7 @@
             "name": "(gdb) Iniciar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "D:\\Git\\Treino-Maratona\\CodigosApa\\output\\1682CodigoGenetico.exe",
+            "program": "D:\\Git\\Treino-Maratona\\CodigosApa\\output\\1803_Matring.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",

@@ -12,12 +12,12 @@ int main() {
             if (i == 0){
                 cout << "NOTAS:\n";
             }
-            cout << quantidade << " nota(s) de R$ " << std::fixed << std::setprecision(2) << dinheiro[i] << std::endl ;
+            cout << quantidade << " nota(s) de R$ " << fixed << setprecision(2) << dinheiro[i] << endl ;
         }else{
             if (i == 6){
                 cout << "MOEDAS:\n";
             }
-            cout << quantidade << " moeda(s) de R$ " << std::fixed << std::setprecision(2) << dinheiro[i] << std::endl;
+            cout << quantidade << " moeda(s) de R$ " << fixed << setprecision(2) << dinheiro[i] << endl;
         }
     }
     return 0;
