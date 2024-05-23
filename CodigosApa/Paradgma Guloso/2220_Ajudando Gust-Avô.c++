@@ -1,29 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 string A, B;
-int buscar(int x){
-    int h = 1;
-    for (int p = x + 1; p < A.size(); p++){
-        if(A[p] == B[0]){
-            h++; 
-        }else if (A[p] == B[1]){
-            break;
-        }  
+bool verificarB(int i){
+    int tamA = A.size(), tamB = B.size(), a = 0, b = 0;
+    while (a < tamA && b < tamB * i){
+        if (A[a] == B[b/i]){
+            b++;
+        }
+        a++;
     }
-    return h;
-} 
+    return b == tamB * i;
+}
 int main() {   
     int t;
     cin >> t;
-    for (int i = 0; i < t; i++){
+    while (t--){
         cin >> A >> B;
-        for (int w = 0; w < A.size(); w++){
-            if (A[w] == B[0]){
-                cout << buscar(w) << "\n";
-                break;
-            }else if (w == (A.size() - 1)){
-                cout << "0\n";
+        int esq = 0, dir = A.size() / B.size(), resultado =0;
+        while (esq <= dir){
+            int meio = (esq + dir) / 2;
+            if (verificarB(meio)){
+                resultado = meio;
+                esq = meio + 1;
             }
-        }    
-    }
+            else{
+                dir = meio - 1;
+            }
+        }
+        cout << resultado << "\n";
+    }    
 }
+
