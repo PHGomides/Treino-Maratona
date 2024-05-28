@@ -2,69 +2,48 @@
 using namespace std;
 
 int particionar(int arr[], int inicio, int fim){
-    int soma = 0, contagem = 0;
-    for (int i = inicio; i < fim; i++){
-        soma = soma + arr[i];
-        contagem++;
+    int soma = 0, tamanho = fim - inicio + 1;
+    for (int i = inicio; i <= fim; i++){
+        soma += arr[i];
     }
-    int pivo = soma/contagem;
+    int pivo = soma / tamanho;
 
-    int contagem = 0;
-    int menor = pivo;
-    for (int i = inicio; i < fim; i++){
-        if (arr[i] == pivo){
-            contagem = i;
-            break;
-        }else if (arr[i] < menor){
-            if (/* condition */)
-            {
-                /* code */
-            }
-            
+    int indicePivo = inicio;
+    int menorDiferenca = abs(arr[inicio] - pivo);
+    for (int i = inicio + 1; i <= fim; i++){
+        int diferenca = abs(arr[i] - pivo);
+        if (diferenca < menorDiferenca){
+            menorDiferenca = diferenca;
+            indicePivo = i;
         }
-        
     }
 
-    int indicePivo = inicio + contagem;
     swap(arr[indicePivo], arr[inicio]);
+    pivo = arr[inicio];
 
-    // Ordenando as partes esquerda e direita do elemento pivô
-    int i = inicio, j = fim;
-
-    while (i < indicePivo && j > indicePivo) {
-        while (arr[i] <= pivo) {
-            i++;
-        }
-
-        while (arr[j] > pivo) {
-            j--;
-        }
-
-        if (i < indicePivo && j > indicePivo) {
-            swap(arr[i++], arr[j--]);
-        }
+    // Particionando o array
+    int i = inicio + 1, j = fim;
+    while (i <= j) {
+        while (i <= j && arr[i] <= pivo) i++;
+        while (i <= j && arr[j] > pivo) j--;
+        if (i < j) swap(arr[i], arr[j]);
     }
-    return indicePivo;
+    swap(arr[inicio], arr[j]);
+
+    return j;
 }
 
 void quickSort(int arr[], int inicio, int fim){
-    // caso base
-    if (inicio >= fim)
-        return;
-
-    // particionando o array
-    int p = particionar(arr, inicio, fim);
-
-    // Ordenando a parte esquerda
-    quickSort(arr, inicio, p - 1);
-
-    // Ordenando a parte direita
-    quickSort(arr, p + 1, fim);
+    if (inicio < fim){
+        int p = particionar(arr, inicio, fim);
+        quickSort(arr, inicio, p - 1);
+        quickSort(arr, p + 1, fim);
+    }
 }
 
 int main(){
     int arr[] = { 9, 3, 4, 2, 1, 8 };
-    int n = 6;
+    int n = sizeof(arr) / sizeof(arr[0]);
 
     quickSort(arr, 0, n - 1);
 
