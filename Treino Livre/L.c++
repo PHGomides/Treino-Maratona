@@ -4,8 +4,8 @@ using namespace std;
 int main(){
     int n;
     cin >> n;    
-    vector <string> cri(n);
-    vector <string> ord(n);
+    string cri;
+    string ord;
 
     for (int i = 0; i < n; i++){
         cin >> cri[i];
